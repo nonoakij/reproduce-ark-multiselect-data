@@ -9,46 +9,95 @@ export default function Home() {
     { label: "Svelte", value: "svelte", disabled: true },
   ]
   return (
-    <form
-      action={async (formData) => {
-        "use server"
-        const selectedValue = formData.getAll("framework") // expected to be string[] but is undefined
-        console.log("=====================")
-        console.log(selectedValue)
-        console.log("=====================")
-      }}
-    >
-      <SelectRoot items={items} multiple name="framework">
-        <Select.Label>Framework</Select.Label>
-        <Select.Control>
-          <Select.Trigger>
-            <Select.ValueText placeholder="Select a Framework" />
-          </Select.Trigger>
-          <Select.ClearTrigger>Clear</Select.ClearTrigger>
-        </Select.Control>
-        <Portal>
-          <Select.Positioner>
-            <Select.Content style={{ background: "black", color: "white" }}>
-              <Select.ItemGroup id="framework">
-                <Select.ItemGroupLabel htmlFor="framework">
-                  Frameworks
-                </Select.ItemGroupLabel>
-                {items.map((item) => (
-                  <Select.Item
-                    key={item.value}
-                    item={item}
-                    style={{ display: "flex", border: "1px solid black" }}
-                  >
-                    <Select.ItemText>{item.label}</Select.ItemText>
-                    <Select.ItemIndicator>✓</Select.ItemIndicator>
-                  </Select.Item>
-                ))}
-              </Select.ItemGroup>
-            </Select.Content>
-          </Select.Positioner>
-        </Portal>
-      </SelectRoot>
-      <button>submit</button>
-    </form>
+    <main>
+      <section>
+        <h1>Original</h1>
+        <form
+          action={async (formData) => {
+            "use server"
+            const selectedValue = formData.getAll("framework") // expected to be string[] but is undefined
+            console.log("=====================")
+            console.log(selectedValue)
+            console.log("=====================")
+          }}
+        >
+          <Select.Root items={items} multiple name="framework">
+            <Select.Label>Framework</Select.Label>
+            <Select.Control>
+              <Select.Trigger>
+                <Select.ValueText placeholder="Select a Framework" />
+              </Select.Trigger>
+              <Select.ClearTrigger>Clear</Select.ClearTrigger>
+            </Select.Control>
+            <Portal>
+              <Select.Positioner>
+                <Select.Content style={{ background: "black", color: "white" }}>
+                  <Select.ItemGroup id="framework">
+                    <Select.ItemGroupLabel htmlFor="framework">
+                      Frameworks
+                    </Select.ItemGroupLabel>
+                    {items.map((item) => (
+                      <Select.Item
+                        key={item.value}
+                        item={item}
+                        style={{ display: "flex", border: "1px solid black" }}
+                      >
+                        <Select.ItemText>{item.label}</Select.ItemText>
+                        <Select.ItemIndicator>✓</Select.ItemIndicator>
+                      </Select.Item>
+                    ))}
+                  </Select.ItemGroup>
+                </Select.Content>
+              </Select.Positioner>
+            </Portal>
+          </Select.Root>
+          <button>submit</button>
+        </form>
+      </section>
+      <section>
+        <h1>Patched</h1>
+        <form
+          action={async (formData) => {
+            "use server"
+            const selectedValue = formData.getAll("framework") // expected to be string[] but is undefined
+            console.log("=====================")
+            console.log(selectedValue)
+            console.log("=====================")
+          }}
+        >
+          <SelectRoot items={items} multiple name="framework">
+            <Select.Label>Framework</Select.Label>
+            <Select.Control>
+              <Select.Trigger>
+                <Select.ValueText placeholder="Select a Framework" />
+              </Select.Trigger>
+              <Select.ClearTrigger>Clear</Select.ClearTrigger>
+            </Select.Control>
+            <Portal>
+              <Select.Positioner>
+                <Select.Content style={{ background: "black", color: "white" }}>
+                  <Select.ItemGroup id="framework">
+                    <Select.ItemGroupLabel htmlFor="framework">
+                      Frameworks
+                    </Select.ItemGroupLabel>
+                    {items.map((item) => (
+                      <Select.Item
+                        key={item.value}
+                        item={item}
+                        style={{ display: "flex", border: "1px solid black" }}
+                      >
+                        <Select.ItemText>{item.label}</Select.ItemText>
+                        <Select.ItemIndicator>✓</Select.ItemIndicator>
+                      </Select.Item>
+                    ))}
+                  </Select.ItemGroup>
+                </Select.Content>
+              </Select.Positioner>
+            </Portal>
+          </SelectRoot>
+          <button>submit</button>
+        </form>
+      </section>
+    </main>
   )
 }
